@@ -16,13 +16,10 @@ class Algorithms:
         
         #Process all vertices of polygon
         for i in range(n):
+
+            a = i%n
+            b = (i+1)%n
             
-            if (i != (n-1)):      
-                a = i
-                b = i+1
-            else:
-                a = i
-                b = 0
             
             #Reduce coordinates
             x_ir = pol[a].x() - q.x()
@@ -45,7 +42,7 @@ class Algorithms:
             t = ((pol[b].x()-pol[a].x())*(q.y()-pol[a].y()))-((pol[b].y()-pol[a].y())*(q.x()-pol[a].x()))
             
             #on the edge or vertex?
-            if (t==0):
+            if (t==0 and (pol[a].x() >= q.x() and pol[b].x() <= q.x() or pol[a].x() <= q.x() and pol[b].x() >= q.x()) and (pol[a].y() >= q.y() and pol[b].y() <= q.y() or pol[a].y() <= q.y() and pol[b].y() >= q.y())):
                 V = V+1
         
         #on edge
@@ -72,12 +69,8 @@ class Algorithms:
         #Process all vertices of polygon
         for i in range(n):
             
-            if (i != (n-1)):      
-                a = i
-                b = i+1
-            else:
-                a = i
-                b = 0
+            a = i%n
+            b = (i+1)%n
                              
             #sides of triangle
             dif_x_qi = pol[a].x() - q.x()
@@ -108,7 +101,7 @@ class Algorithms:
                 w = w-w_i
                 
             #on the edge or vertex?
-            if (t==0):
+            if (t==0 and (pol[a].x() >= q.x() and pol[b].x() <= q.x() or pol[a].x() <= q.x() and pol[b].x() >= q.x()) and (pol[a].y() >= q.y() and pol[b].y() <= q.y() or pol[a].y() <= q.y() and pol[b].y() >= q.y())):
                 V = V+1
                    
         const = 2*pi
